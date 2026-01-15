@@ -1,6 +1,4 @@
 node_modules
 .env
 .env.*
-dist
-.cache
-.vercel
+.DS_Store
