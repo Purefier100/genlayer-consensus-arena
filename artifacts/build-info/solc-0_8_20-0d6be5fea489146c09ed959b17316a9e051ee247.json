@@ -1,0 +1,35 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_20-0d6be5fea489146c09ed959b17316a9e051ee247",
+  "solcVersion": "0.8.20",
+  "solcLongVersion": "0.8.20+commit.a1b79de6",
+  "userSourceNameMap": {
+    "contracts/GenLayerDiceUnlimited.sol": "project/contracts/GenLayerDiceUnlimited.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "shanghai",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/GenLayerDiceUnlimited.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\ncontract GenLayerDiceUnlimited {\r\n    event DiceRolled(address indexed player, uint8 roll, uint256 timestamp);\r\n\r\n    function rollDice() external returns (uint8) {\r\n        uint8 roll = uint8(\r\n            uint256(\r\n                keccak256(\r\n                    abi.encodePacked(\r\n                        block.timestamp,\r\n                        msg.sender,\r\n                        block.prevrandao\r\n                    )\r\n                )\r\n            ) % 6 + 1\r\n        );\r\n\r\n        emit DiceRolled(msg.sender, roll, block.timestamp);\r\n        return roll;\r\n    }\r\n}\r\n\r\n"
+      }
+    }
+  }
+}

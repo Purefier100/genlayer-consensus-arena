@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GenLayer Dice Arena</title>
+    <link rel="stylesheet" href="/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="layout">
+
+            <!-- LEFT: GAME -->
+            <div class="game">
+                <h1>🎲 GenLayer<br>Consensus Dice Arena</h1>
+
+                <button onclick="connectWallet()">Connect Wallet</button>
+                <div id="walletStatus" class="wallet"></div>
+
+                <button onclick="playGame()">Roll Dice</button>
+
+                <div id="diceWrapper">
+                    <div id="diceDisplay">⚀</div>
+                </div>
+
+                <div id="resultMessage" class="result"></div>
+                <div class="validated">✔ Validated by GenLayer</div>
+
+                <div id="cooldownTimer" class="timer hidden">
+                    ⏳ Next roll in: <span id="timeLeft">01:00</span>
+                </div>
+
+                <button id="musicToggle" class="music-btn">🔊 Music: OFF</button>
+
+            </div>
+
+            <!-- CENTER: RULES -->
+            <div class="rules">
+                <h3>📜 Game Rules</h3>
+                <ul>
+                    <li>🎲 Click <b>Roll Dice</b> to play</li>
+                    <li>✅ Roll a <b>6</b> to WIN</li>
+                    <li>🏆 Win gives <b>+10 XP</b></li>
+                    <li>❌ Any other number = no XP</li>
+                    <li>⏱️ 1 roll per minute</li>
+                    <li>📊 Leaderboard ranks by XP</li>
+                </ul>
+            </div>
+
+            <!-- RIGHT: LEADERBOARD -->
+            <div class="leaderboard">
+                <h2>🏆 XP Leaderboard</h2>
+                <ul id="leaderboardList"></ul>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 🎵 AUDIO -->
+    <audio id="bgMusic" loop muted>
+        <source src="/music/eona-emotional-ambient-pop-351436.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="rollSound">
+        <source src="/music/relaxing-guitar-loop-v5-245859.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="winSound">
+        <source src="/music/ascent-braam-magma-brass-d-cinematic-trailer-sound-effect-222269.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio id="loseSound">
+        <source src="/music/descent-whoosh-long-cinematic-sound-effect-405921.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- 🔑 Load ethers BEFORE game.js -->
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.10.0/dist/ethers.umd.min.js"></script>
+
+    <!-- 🎮 Game logic -->
+    <script src="/game.js"></script>
+
+    <!-- 🎶 BACKGROUND MUSIC START (BROWSER-SAFE) -->
+    <script>
+        const bgMusic = document.getElementById("bgMusic");
+
+        if (bgMusic) {
+            bgMusic.volume = 0.25;
+
+            function startBackgroundMusic() {
+                bgMusic.muted = false;
+                bgMusic.play().catch(() => { });
+                document.removeEventListener("click", startBackgroundMusic);
+                document.removeEventListener("touchstart", startBackgroundMusic);
+            }
+
+            // Desktop + Mobile
+            document.addEventListener("click", startBackgroundMusic);
+            document.addEventListener("touchstart", startBackgroundMusic);
+        }
+    </script>
+
+</body>
+
+</html>

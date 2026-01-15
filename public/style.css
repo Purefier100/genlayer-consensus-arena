@@ -1,0 +1,286 @@
+/* ===== BASE ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: radial-gradient(circle at top, #111 0%, #000 70%);
+    color: #fff;
+    font-family: Inter, system-ui, sans-serif;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 40px 24px;
+}
+
+/* ===== GRID ===== */
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+}
+
+/* ===== PANELS ===== */
+.game,
+.rules,
+.leaderboard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== GAME ===== */
+.game {
+    text-align: center;
+}
+
+.game h1 {
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* ===== BUTTONS ===== */
+button {
+    background: linear-gradient(135deg, #f5c400, #ffd84d);
+    border: none;
+    padding: 12px 20px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+/* ===== WALLET ===== */
+.wallet {
+    font-size: 13px;
+    opacity: 0.85;
+    margin-bottom: 10px;
+    word-break: break-all;
+}
+
+/* ===== DICE ===== */
+#diceWrapper {
+    margin: 24px 0;
+}
+
+#diceDisplay {
+    font-size: 80px;
+    transition: transform 0.2s ease;
+}
+
+.shake {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(10deg);
+    }
+
+    50% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+/* ===== RESULT ===== */
+.result {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.result.win {
+    color: #00ff88;
+    text-shadow: 0 0 12px rgba(0, 255, 136, 0.7);
+}
+
+.result.lose {
+    color: #ff4d4d;
+}
+
+/* ===== VALIDATED ===== */
+.validated {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #7dffb3;
+    opacity: 0.8;
+}
+
+/* ===== RULES ===== */
+.rules ul {
+    padding-left: 18px;
+}
+
+.rules li {
+    margin: 8px 0;
+}
+
+/* ===== LEADERBOARD ===== */
+#leaderboardList {
+    list-style: none;
+    padding: 0;
+}
+
+#leaderboardList li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.timer {
+    margin-top: 12px;
+    font-weight: bold;
+    color: #ffcc00;
+    font-size: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+#diceDisplay {
+    font-size: 6rem;
+    transition: transform 0.3s ease;
+}
+
+.shake {
+    animation: shake 0.6s;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(15deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.result.win {
+    color: #00ff9c;
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #00ff9c;
+    }
+
+    to {
+        text-shadow: 0 0 25px #00ff9c;
+    }
+}
+
+@media (max-width: 900px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .game,
+    .rules,
+    .leaderboard {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    #diceDisplay {
+        font-size: 5rem;
+    }
+}
+
+#cooldownTimer {
+    background: #111;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+.music-btn {
+    margin-top: 10px;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #2d2f36, #1a1b1f);
+    color: #fff;
+}
+
+.music-btn:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 768px) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .game,
+    .rules,
+    .leaderboard {
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    #diceWrapper {
+        margin: 20px auto;
+    }
+
+    .leaderboard ul {
+        font-size: 14px;
+    }
+}
